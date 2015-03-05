@@ -20,6 +20,8 @@ REDIS_DIR=db/redis/lib
 REDIS_FILE=jedis-2.0.0.jar
 VOLDEMORT_DIR=db/voldemort/lib
 VOLDEMORT_FILE=voldemort-0.90.1.tar.gz
+RomaClients_DIR=db/RomaClients/lib
+RomaClients_FILE=db/RomaClients/lib/romac4jl.0.0.1.jar
 
 .PHONY: build
 build: download-database-deps
@@ -34,6 +36,7 @@ download-database-deps:  $(CASSANDRA_5_DIR)/$(CASSANDRA_5_FILE) \
 			 $(INFINISPAN_DIR)/$(INFINISPAN_FILE)   \
 			 $(MONGODB_DIR)/$(MONGODB_FILE)   \
 			 $(REDIS_DIR)/$(REDIS_FILE)   \
+                         $(RomaClients_DIR)/$(RomaClients_FILE) \ 
 			 $(VOLDEMORT_DIR)/$(VOLDEMORT_FILE)   \
 
 $(CASSANDRA_5_DIR)/$(CASSANDRA_5_FILE) :
@@ -78,4 +81,7 @@ $(VOLDEMORT_DIR)/$(VOLDEMORT_FILE) :
 	wget https://github.com/downloads/voldemort/voldemort/$(VOLDEMORT_FILE)\
 		 -O $(VOLDEMORT_DIR)/$(VOLDEMORT_FILE)
 	tar -C $(VOLDEMORT_DIR) -zxf $(VOLDEMORT_DIR)/$(VOLDEMORT_FILE)
+
+$(RomaClients_DIR)/$(RomaClients_FILE) :
+        tar -C $(RomaClients_DIR) -zxf  $(RomaClients_DIR)/$(RomaClients_FILE) 
 
