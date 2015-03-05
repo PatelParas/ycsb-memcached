@@ -3,33 +3,25 @@
  *
  * All YCSB records are mapped to a ROMA *hash field*.  For scanning
  * operations, all keys are saved (by an arbitrary hash) in a sorted set.
+ * Author : Paras Patel
  */
 
 package com.yahoo.ycsb.db;
 
 import com.rakuten.rit.roma.romac4j.RomaClient;
-//import com.rakuten.rit.roma.romac4j.connection.*;
 import com.yahoo.ycsb.DB;
 import com.yahoo.ycsb.DBException;
 import com.yahoo.ycsb.ByteIterator;
 import com.yahoo.ycsb.ByteArrayByteIterator;
-import com.yahoo.ycsb.StringByteIterator;
 
-import java.util.Map;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
 import java.io.*;
-import org.apache.log4j.Logger;
 
-import java.math.BigInteger;
 
 public class RomaClients extends DB {
-
-
 
     private static RomaWrapper rw = null;
     private static RomaClient rc = null;
@@ -47,11 +39,9 @@ public class RomaClients extends DB {
                 port = 10011;
             }
             String host = props.getProperty("roma.host");
-            //RomaSocketPool.init();
             if (rw == null) {
                 rw = RomaWrapper.getInstance();
             }
-            //rc = rw.getConnection("localhost_10001");
             rc = rw.getConnection(host + "_" + port);
         } catch (Exception e) {
         }
